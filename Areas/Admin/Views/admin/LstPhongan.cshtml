@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LuanVan.Models.PhongAn>
+
+@{
+    ViewBag.Title = "LstPhongan";
+    Layout = " ~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Danh Sách Phòng Ăn</h2>
+
+<p>
+    @Html.ActionLink("Thêm Phòng", "formthemphong")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ID Phòng Ăn
+        </th>
+        <th>
+            Tên Phòng           
+        </th>
+        <th>
+            Mô Tả
+        </th>
+        <th>
+           Trạng Thái
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Số Bàn
+        </th>
+        <th></th>
+    </tr>
+@*@{
+    LuanVan.Models.BanAn ba = Session["banan"] as LuanVan.Models.BanAn;
+    var tongsoluongghe = ba.loaibanan_id.Count();
+    }*@
+   
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.phongan_id
+        </td>
+        <td>
+            @item.phongan_ten
+        </td>
+        <td>
+            @item.phongan_mota
+        </td>
+        <td>
+            @item.phongan_trangthai
+        </td>
+        <td>
+            @item.phongan_gia
+        </td>
+        <td>       
+            @item.tongsoban
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "formsuaphongan", new { id=item.phongan_id }) 
+          
+        </td>
+    </tr>
+}
+
+</table>

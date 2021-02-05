@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LuanVan.Models.DatBan_MonAn>
+
+@{
+    ViewBag.Title = "Các món đặt trước";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+    }
+<h2>Các món ăn được đặt trước</h2>
+
+<p>
+    @Html.ActionLink("Trở về", "lstdatban")
+</p>
+<div>
+    <h4>Danh sách</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Hình
+            </th>
+            <th>
+                Trạng Thái
+            </th>
+            <th>
+                Loại
+            </th>
+            <th></th>
+        </tr>
+        @{
+            int count = 0;
+            int tien = 0;
+            int tongtien = 0;
+        }
+        @foreach (var item in Model)
+        {
+            count++;
+            tien = 0;
+            tien = item.monan_gia * item.monan_soluong;
+            tongtien += tien;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonAn.monan_ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.monan_gia)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.MonAn.monan_hinh)" height="80" width="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonAn.monan_trangthai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonAn.LoaiMonAn.loaimonan_ten)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                Tổng cộng:
+            </td>
+            <td>
+                @tongtien
+            </td>
+
+    </table>
+</div>

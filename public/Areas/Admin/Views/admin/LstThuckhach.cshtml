@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LuanVan.Models.ThucKhach>
+
+@{
+    ViewBag.Title = "LstThuckhach";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Danh Sách Thực Khách</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Số Điện Thoại
+        </th>
+        <th>
+           Mật Khẩu
+        </th>
+        <th>
+           Email
+        </th>
+        <th>
+            Tên
+        </th>
+        <th>
+            Địa Chỉ
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_diachi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thuckhach_trangthai)
+        </td>
+        <td>
+            @Html.ActionLink("Ẩn", "actanthuckhach", new { id=item.thuckhach_sdt.Trim() })
+        </td>
+    </tr>
+}
+
+</table>

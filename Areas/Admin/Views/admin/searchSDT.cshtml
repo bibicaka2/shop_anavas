@@ -1,0 +1,78 @@
+﻿@model IEnumerable<LuanVan.Models.DatBan>
+
+
+
+
+<h3>Đơn đã đặt</h3>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Thời gian bắt đầu
+        </th>
+        <th>
+            Thời gian kết thúc
+        </th>
+        <th>
+            Ngày
+        </th>
+        <th>
+            SĐT Khách
+        </th>
+        <th>
+            Loại bàn
+        </th>
+        <th>
+            Phòng
+        </th>
+        <th>
+            Số bàn
+        </th>
+        <th>
+            Trạng thái
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.datban_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thoigianbatdau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thoigianketthuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.thuckhach_sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.loaibanan_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhongAn.phongan_ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soban)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datban_trangthai)
+            </td>
+            <td>
+                @Html.ActionLink("Xác nhận", "actXacNhanDDB", new { id = item.datban_id }) |
+                @Html.ActionLink("Xóa", "actXoaDatBan", new { id = item.datban_id }) |
+                @Html.ActionLink("Xem đặt trước", "formShowDatTruoc", new { id = item.datban_id }) 
+                @*@Html.ActionLink("Xếp vào Bàn", "actXepVaoBan", new { id = item.datban_id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+

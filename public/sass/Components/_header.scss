@@ -1,0 +1,47 @@
+.nav-item{
+    &:hover{
+        color: orange !important;
+    }
+    &:focus{
+        color: orange !important;
+    }
+}
+.header{
+    &__title{
+        float:right;
+        margin-top: 15px;
+        color: orange;
+        font-size: 17px;
+        &:hover,&:active{
+            transform: scale(1.2);
+        }
+    }
+    &__icon-search{
+        color:white
+    }
+    &__container{
+        height:100px
+    }
+}
+.height{
+    &-80{
+        height: 80px;
+    }
+}
+.logo__header{
+    float:left;
+}
+.navbar-brand{
+  
+    @media only screen and (max-width:2000px){
+        position: absolute;
+        left:2%;
+        margin-top:-20px;
+    }
+}
+.form-control{
+    &--find{
+        width: 250px !important;
+    }
+   
+}

@@ -1,0 +1,293 @@
+﻿@model IPagedList<LuanVan.Models.DatBan>
+
+@{
+    ViewBag.Title = "lstdatban";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+<!-- PagedList CSS-->
+<link href="~/Content/PagedList.css" rel="stylesheet" media="all">
+<!-- Jquery JS-->
+<script src="~/Areas/Admin/Content/vendor/jquery-3.2.1.min.js"></script>
+<!-- Main JS-->
+<script src="~/Areas/Admin/Content/js/main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  
+    <!-- Tìm kiếm theo giờ đặt bàn --->
+    <h3>Số bàn của phòng đang được đặt</h3>
+    <div class="row"> 
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Thời gian bắt đầu</label>
+                @*@Html.Editor("thoigianbatdau", new { htmlAttributes = new { @id = "thoigianbatdau", @class = "form-control" } })*@ 
+                <input type="Time" value="" id="thoigianbatdau" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Ngày</label>
+                @*@Html.Editor("book_date", new { htmlAttributes = new { @id = "book_date", @class = "form-control" } })*@ 
+                <input type="date" value="" id="book_date" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <label for="">&nbsp</label>
+                <input type="button" id="Btn_searchTime" name="Btn_searchTime" value="Tìm" class="btn btn-default" />
+            </div>
+        </div>
+    </div>  
+    <h4>Số bàn đang được đặt</h4>
+    <div id="divHienKQTimKiem">
+
+    </div>
+    <!-- Tìm kiếm record theo sdt khách hàng --->
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Số điện thoại khách</label>
+                <input type="text" value="" id="sodienthoai_search" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Ngày</label>
+                <input type="date" value="" id="search_date_SDT" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-10">
+                <label for="">&nbsp</label>
+                <input type="button" id="Btn_searchSDT" name="Btn_searchSDT" value="Tìm" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    
+    <div id="divHienDonDaDat">
+
+    </div>
+    <!-- Danh Sách Yêu Cầu Đặt Bàn Hôm Nay --->
+    <div id="divDsHomNay">
+
+    </div>
+    
+    <!-- Danh Sách Yêu Cầu Đặt Bàn --->
+    <h2>Danh Sách Yêu Cầu Đặt Bàn</h2>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Thời gian bắt đầu
+            </th>
+            <th>
+                Thời gian kết thúc
+            </th>
+            <th>
+                Ngày
+            </th>
+            <th>
+                SĐT Khách
+            </th>
+            <th>
+                Loại bàn
+            </th>
+            <th>
+                Phòng
+            </th>
+            <th>
+                Số bàn
+            </th>
+            <th>
+                Trạng thái
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datban_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.thoigianbatdau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.thoigianketthuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.thuckhach_sdt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.loaibanan_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhongAn.phongan_ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soban)
+                </td>
+                <td>
+
+                    @*@Html.DisplayFor(modelItem => item.datban_trangthai)*@
+                    @{
+                        DateTime _dt = DateTime.Now;
+                                    <!--Year-->
+                        if (item.ngay.Year == _dt.Year)
+                        {
+                                        <!--Month-->
+                            if (item.ngay.Month == _dt.Month)
+                            {
+                                            <!--Day-->
+                                if (item.ngay.Day < _dt.Day)
+                                {
+                                                                    <!--đơn củ-->
+                                    if (item.datban_trangthai == null || item.datban_trangthai == false)
+                                    {
+                                        <span style="color:#ff0000; font-weight:bold">Đã hủy</span>
+                                    }
+                                    else if (item.datban_trangthai == true)
+                                    {
+                                        <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                                    }
+                                }
+                                else if (item.ngay.Day >= _dt.Day)
+                                {
+                                                <!--đơn mới-->
+                                    if (item.datban_trangthai == null)
+                                    {
+                                        <span style="color:#ffd800; font-weight:bold">Chưa xác nhận</span>
+                                    }
+                                    else if (item.datban_trangthai == false)
+                                    {
+
+                                        <span style="color:#00ff21; font-weight:bold">Đã xác nhận</span>
+                                    }
+                                    else if (item.datban_trangthai == true)
+                                    {
+
+                                        <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                                    }
+                                }
+                            }
+                            else if (item.ngay.Month < _dt.Month)
+                            {
+                                                            <!--đơn củ-->
+                                if (item.datban_trangthai == null || item.datban_trangthai == false)
+                                {
+                                    <span style="color:#ff0000; font-weight:bold">Đã hủy</span>
+                                }
+                                else if (item.datban_trangthai == true)
+                                {
+                                    <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                                }
+                            }
+                            else if (item.ngay.Month > _dt.Month)
+                            {
+                                            <!--đơn mới-->
+                                if (item.datban_trangthai == null)
+                                {
+                                    <span style="color:#ffd800; font-weight:bold">Chưa xác nhận</span>
+                                }
+                                else if (item.datban_trangthai == false)
+                                {
+
+                                    <span style="color:#00ff21; font-weight:bold">Đã xác nhận</span>
+                                }
+                                else if (item.datban_trangthai == true)
+                                {
+
+                                    <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                                }
+
+                            }
+                        }
+                        else if (item.ngay.Year < _dt.Year)
+                        {
+                                                <!--đơn củ-->
+                            if (item.datban_trangthai == null || item.datban_trangthai == false)
+                            {
+                                <span style="color:#ff0000; font-weight:bold">Đã hủy</span>
+                            }
+                            else if (item.datban_trangthai == true)
+                            {
+                                <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                            }
+                        }
+                        else if (item.ngay.Year > _dt.Year)
+                        {
+                                            <!--đơn mới-->
+                            if (item.datban_trangthai == null)
+                            {
+                                <span style="color:#ffd800; font-weight:bold">Chưa xác nhận</span>
+                            }
+                            else if (item.datban_trangthai == false)
+                            {
+
+                                <span style="color:#00ff21; font-weight:bold">Đã xác nhận</span>
+                            }
+                            else if (item.datban_trangthai == true)
+                            {
+
+                                <span style="color:#0094ff; font-weight:bold">Đã thanh toán</span>
+                            }
+                        }
+
+                    }
+                
+                </td>
+                <td>
+                    @Html.ActionLink("Xác nhận", "actXacNhanDDB", new { id = item.datban_id }) |
+                    @Html.ActionLink("Xóa", "actXoaDatBan", new { id = item.datban_id }) |
+                    @Html.ActionLink("Xem đặt trước", "formShowDatTruoc", new { id = item.datban_id }) 
+                    @*@Html.ActionLink("Xếp vào Bàn", "actXepVaoBan", new { id = item.datban_id })*@
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.PagedListPager(Model, i => Url.Action("lstdatban", "Admin", new { i}))
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post('/Admin/Admin/searchBanAn', { thoigianbatdau: null, book_date: null }, function () {
+                $('#divHienKQTimKiem').html(data);
+            });
+            
+            $.get('/Admin/Admin/showDsHomNay', function (data) {
+                $('#divDsHomNay').html(data);
+            });
+            $('#Btn_searchTime').click(function () {
+                var url = '/Admin/Admin/searchBanAn';
+                var _thoigianbatdau = $('#thoigianbatdau').val();
+                var _book_date = $('#book_date').val();
+                $.post(url, { thoigianbatdau: _thoigianbatdau, book_date: _book_date }, function (data) {
+                    $('#divHienKQTimKiem').html(data);
+                })
+            });
+            $('#Btn_searchSDT').click(function () {
+                var url = '/Admin/Admin/searchSDT';
+                var _sdt = $('#sodienthoai_search').val();
+                var _search_date_SDT = $('#search_date_SDT').val();
+                $.post(url, { sodienthoai_search: _sdt, search_date_SDT: _search_date_SDT }, function (data) {
+                    $('#divHienDonDaDat').html(data);
+                })
+            });
+            
+        })
+    </script>
+
+</body>
+</html>

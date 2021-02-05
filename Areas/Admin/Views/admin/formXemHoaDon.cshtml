@@ -1,0 +1,92 @@
+﻿@*@model IEnumerable<LuanVan.Models.ChiTietHoaDon>*@
+
+@{
+    ViewBag.Title = "Hóa đơn của bàn";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Các món đã gọi</h2>
+
+<p>
+    @Html.ActionLink("Trở lại", "LstBanAn")
+</p>
+@ViewBag.BaID
+@{
+    var idBan = ViewBag.BaID;
+}
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th> 
+        <th>
+            Têm món ăn
+        </th> 
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th></th>
+    </tr>
+    @{
+        var session_id = "hoadon" + idBan;
+        LuanVan.Models.HoaDon ds = Session[session_id] as LuanVan.Models.HoaDon;
+        int count = 0;
+        int tien = 0;
+        int tongtien = 0;
+    }
+@foreach (var item in ds.ChiTietHoaDons) {
+    count++;
+    tien = 0;
+    tien = item.soluong * item.dongia;
+    tongtien += tien;
+    <tr>
+        <td>
+            @count
+        </td>
+        <td>
+            @item.MonAn.monan_ten
+        </td>
+        <td>
+            @item.soluong
+        </td>
+        <td>
+            @item.dongia
+        </td>
+        <td> 
+            @tien
+        </td> 
+            @*@Html.ActionLink("", "xoaChiTiet", new { id = item.chitiethoadon_id, idBan = idBan })*@
+            @*<form action="@Url.Action("xoaChiTietHD", "Admin", new { id = item.monan_id, idBan = idBan })" method="post">
+            <td>
+                <input type="submit" value="Xóa" class="btn btn-primary" />
+            </td>
+        </form>*@ 
+    </tr>
+    
+}
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            Tổng cộng:
+        </td>
+        <td>
+            @tongtien
+        </td>
+        <form action="@Url.Action("actThanhToanHD", "Admin", new { idBan = idBan, tongtienhd = tongtien })" method="post">
+            <td>
+                <input type="submit" value="Thanh Toán" class="btn btn-primary" />
+                @*@{
+                    ds.ChiTietHoaDons.Clear();
+                }*@
+            </td>
+        </form>
+    </tr>
+</table>

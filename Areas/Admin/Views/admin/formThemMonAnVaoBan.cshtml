@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LuanVan.Models.MonAn>
+
+@{
+    ViewBag.Title = "formThemMonAnVaoBan";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+<!-- Main JS-->
+<script src="~/Areas/Admin/Content/js/main.js"></script>
+<h2>Chọn món ăn</h2>
+<h2>@ViewBag.BaTen</h2>
+@{
+    var idBanAn = ViewBag.BaID;
+}
+<p>
+    @Html.ActionLink("Trở lại", "LstBanAn")
+</p> 
+<table class="table">
+    <tr> 
+        <th>
+            STT
+        </th>
+        <th>
+            Tên món ăn
+        </th>
+        <th>
+            Giá
+        </th> 
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Loại món ăn
+        </th> 
+        <th></th>
+    </tr>
+@{
+        int count = 0;
+}
+@foreach (var item in Model) {
+    count++;
+    <tr>
+        <td>
+             @count
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monan_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monan_gia)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.monan_trangthai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiMonAn.loaimonan_ten)
+        </td> 
+        <form action="@Url.Action("actThemMonAnVaoBan", "Admin", new { id = item.monan_id, idBan =  idBanAn})" method="post">
+            <td>
+                <input type="submit" value="Thêm vào bàn" class="btn btn-primary" />
+            </td>
+        </form>
+    </tr>
+}
+
+</table>

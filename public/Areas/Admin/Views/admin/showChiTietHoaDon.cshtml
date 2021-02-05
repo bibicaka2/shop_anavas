@@ -1,0 +1,88 @@
+﻿@model IEnumerable<LuanVan.Models.ChiTietHoaDon>
+
+@{
+    ViewBag.Title = "Chi tiết hóa đơn";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Chi Tiết hóa đơn</h2>
+<p>
+    @Html.ActionLink("Trở về", "LstHoaDon")
+</p>
+<div>
+    <h4>Hóa đơn</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Số hóa đơn
+            </th>
+            <th>
+                Tên món ăn
+            </th>
+            <th>
+                Nước uống
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá
+            </th> 
+            <th>Thành tiền</th>
+            <th></th>
+        </tr>
+        @{
+            int count = 0;
+            int tien = 0;
+            int tongtien = 0;
+        }
+        @foreach (var item in Model)
+        {
+            count++;
+            tien = 0;
+            tien = item.soluong * item.dongia;
+            tongtien += tien;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.hoadon_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MonAn.monan_ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nuocuong_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soluong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dongia)
+                </td>
+                <td>
+                    @tien
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                Tổng cộng:
+            </td>
+            <td>
+                @tongtien
+            </td>
+         </tr>
+</table>
+</div>
+

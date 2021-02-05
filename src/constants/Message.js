@@ -1,0 +1,6 @@
+export const MSG_ADD_TO_CART_SUCCESS= 'Mua Hàng thành công'
+export const MSG_UPDATE_CART_SUCCESSS='Cập nhật giỏ hàng thành công'
+export const MSG_DELETE_PRODUCT_IN_CART_SUCCESS='Xóa giỏ hàng thành công'
+export const MSG_CART_EMPTY='Chưa có sản phẩm'
+export const MSG_WELCOME='chào mừng'
+export const MSG_BUY_TO_CART='Mua hàng thành công '

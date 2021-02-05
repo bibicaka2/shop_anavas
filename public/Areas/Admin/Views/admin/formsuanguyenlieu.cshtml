@@ -1,0 +1,52 @@
+﻿@model LuanVan.Models.NguyenLieu
+
+@{
+    ViewBag.Title = "formsuanguyenlieu";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Bảng Sửa Nguyên Liệu</h2>
+
+@using (Html.BeginForm("actsuanguyenlieu","Admin",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Thông Tin Nguyên</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nguyenlieu_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nguyenlieu_id, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
+                @Html.ValidationMessageFor(model => model.nguyenlieu_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nguyenlieu_ten, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nguyenlieu_ten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nguyenlieu_ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nguyenlieu_dvt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nguyenlieu_dvt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nguyenlieu_dvt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay Lại", "Lstnguyenlieu")
+</div>

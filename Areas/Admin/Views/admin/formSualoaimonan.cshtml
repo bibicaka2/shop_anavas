@@ -1,0 +1,44 @@
+﻿@model LuanVan.Models.LoaiMonAn
+
+@{
+    ViewBag.Title = "formSualoaimonan";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>formSualoaimonan</h2>
+
+@using (Html.BeginForm("actSuaLoaiMonAn", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ActionLink("Quay Lại", "LstLoaiMonAn")
+    </div>
+    <div class="form-horizontal">
+        <h4 class="text-center">Thông Tin Loại Món Ăn</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>ID Loại Món Ăn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.loaimonan_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.loaimonan_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Tên Loại Món Ăn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.loaimonan_ten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.loaimonan_ten, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

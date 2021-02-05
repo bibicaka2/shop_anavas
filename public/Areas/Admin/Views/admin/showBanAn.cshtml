@@ -1,0 +1,90 @@
+﻿@model IEnumerable<LuanVan.Models.BanAn>
+<script src="~/Areas/Admin/Content/vendor/jquery-3.2.1.min.js"></script>
+<div>
+    @{
+        int idBan = 1;
+        int socot = 4;
+        int n = Model.ToList().Count;
+        int sodong;
+        if (n % socot == 0)
+        {
+            sodong = n / socot;
+        }
+        else
+        {
+            sodong = n / socot + 1;
+        }
+        for (int i = 0; i < sodong; i++)
+        {
+            <div class="row justify-content-center">
+                @for (int j = 0; j < socot; j++)
+                {
+                    if ((i * socot + j) >= n) { break; }
+                    var item = Model.ToList()[i * socot + j];
+                    if (item.phongan_id == ViewBag.PaID)
+                    {
+                        <div class="col-md-3 border border-dark ">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    @{
+
+                        var _session = "hoadon" + idBan;
+                        var _cbId = "cbx" + idBan;
+                        LuanVan.Models.HoaDon hd = Session[_session] as LuanVan.Models.HoaDon;
+                        if (hd.ChiTietHoaDons.Count == 0 && hd.thuckhach_sdt == null)
+                        {
+                            <img src="~/Areas/Admin/Image/icon-banan-den.png" />
+                        }
+                        else
+                        {
+                            <img src="~/Areas/Admin/Image/icon-banan-do.png" />
+                        }
+
+                                    }
+                                </div>
+                                <div class="col-md-4 text-justify">
+                                    <input type="checkbox" id="@_cbId" name="arr_idBan" value="@idBan" form="formCbx" />Chọn
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <form action="@Url.Action("formXemHoaDon", "Admin", new { id = item.banan_id })" method="post">
+                                    <input type="submit" value="Hóa đơn" id="btn_xemHoaDon" class="btn btn-primary" />
+                                </form>
+                                &nbsp;
+                                @*<input type="button" value="Thêm món" id="btn_themMon" class="btn btn-primary" onclick=""/>*@
+                                @*<a href="/Admin/admin/formThemMonAnVaoBan?idbanan=@item.banan_id" class="btn btn-primary">Thêm món</a>*@
+                                <form action="@Url.Action("formThemMonAnVaoBan", "Admin", new { id = item.banan_id })" method="post">
+                                    <input type="submit" value="Thêm món" id="btn_themMon" class="btn btn-primary" />
+                                </form>
+                            </div>
+                            <div>
+                                <p style="text-align:center">@item.banan_ten</p>
+                            </div>
+                        </div>
+                    }
+                    if (idBan == 4)
+                    {
+                        idBan = 6;
+                    }
+                    else
+                    {
+                        idBan += 1;
+                    }
+                }
+            </div>
+        }
+
+    }
+</div>
+<br />
+<div class="row justify-content-center">
+    <form action="@Url.Action("actThanhToanNBan", "Admin")" method="post" id="formCbx">
+        <input type="submit"  class="btn btn-primary" value="Thanh toán" />
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+</script>

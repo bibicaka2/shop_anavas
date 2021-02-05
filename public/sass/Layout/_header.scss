@@ -1,0 +1,52 @@
+.header{
+    background-image:linear-gradient(to right bottom, rgba($color-primary-light,.8) ,rgba($color-primary-dark,.6));
+    background-size:cover;
+    background-position: top;
+    position: relative;
+    top:0;
+    left: 0;
+    // transform: translate(0%,-31%);
+    text-align: center;
+    height: 10vh;
+    
+    &__right{
+    
+    float: left;
+    margin-left:65rem;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 2rem;
+    }
+    &__active {
+    text-align: center;
+    border-radius:4px;
+    color: white;
+    }
+    &__a{
+        float: left;
+        list-style: none;
+        text-decoration: none !important;
+        margin-right: 3rem;
+    }
+    &__text-box{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,20%);
+    text-align: center;
+    }
+
+       &__logo{
+           height: 70px;
+           /* width: 20%; */
+       }
+       &__logo-box{
+           position: absolute;
+           top:30px;
+           left:30px;
+           
+       }
+   }
+   .nav-item{
+       margin-right: 2rem !important;
+   }

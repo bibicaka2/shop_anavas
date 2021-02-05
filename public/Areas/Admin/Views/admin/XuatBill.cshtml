@@ -1,0 +1,97 @@
+﻿@model IEnumerable<LuanVan.Models.ChiTietHoaDon>
+
+@{
+    ViewBag.Title = "XuatBill";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+@{
+    LuanVan.Models.HoaDon ds = Session["hoadon_thanhtoanN"] as LuanVan.Models.HoaDon;
+    int count = 0;
+    int tien = 0;
+    int tongtien = 0;
+}
+<h2>Thông tin hóa đơn</h2>
+<div>
+    @Html.ActionLink("Quay lại", "LstBanAn")
+</div>
+<div>
+    <div >
+        <h1 style="color:#ff0000; font-style:italic; font-family:Cambria">Luận Văn Quán</h1>
+    </div>
+    <div>
+        <div>
+            Địa chỉ: 180 Cao Lỗ, Phường 4, Quận 8, TPHCM
+        </div>
+        <div>
+            Số: 0000 @ds.hoadon_id
+        </div>
+        <div>
+            Ngày: @ds.hoadon_ngaylap
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Têm món ăn
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                count++;
+                tien = 0;
+                tien = item.soluong * item.dongia;
+                tongtien += tien;
+                <tr>
+                    <td>
+                        @count
+                    </td> 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MonAn.monan_ten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soluong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dongia)
+                    </td>
+                    <td>
+                        @tien
+                    </td>
+                </tr>
+
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    Tổng cộng:
+                </td>
+                <td>
+                    @tongtien
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-7">
+        &nbsp;
+    </div>
+</div>

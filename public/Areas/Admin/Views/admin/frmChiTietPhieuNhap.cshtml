@@ -1,0 +1,66 @@
+﻿@model IEnumerable<LuanVan.Models.PhieuNhap>
+
+@{
+    ViewBag.Title = "frmChiTietPhieuNhap";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>frmChiTietPhieuNhap</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.phieunhap_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nguyenlieu_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nuocuong_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phieunhap_ngaynhap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phieunhap_ngayhethan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phieunhap_soluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phieunhap_gia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if(item.nguyenlieu_id==)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.phieunhap_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nguyenlieu_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nuocuong_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phieunhap_ngaynhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phieunhap_ngayhethan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phieunhap_soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phieunhap_gia)
+        </td>
+     
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LuanVan.Models.LoaiNuocUong>
+
+@{
+    ViewBag.Title = "LstLoaiNuocUong";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Loại Nước Uống</h2>
+
+<p>
+    @Html.ActionLink("Thêm Loại Nước Uống", "formThemloainuocuong")
+</p>
+<table class="table">
+    <tr>
+        <th>
+             ID
+        </th>
+        <th>
+            Tên
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.loainuocuong_id
+        </td>
+        <td>
+           @item.loainuocuong_ten
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "fromsualoainuocuong", new { id=item.loainuocuong_id.Trim()}) |
+            @Html.ActionLink("Xóa", "actxoaloainuocuong", new { id=item.loainuocuong_id.Trim() })
+        </td>
+    </tr>
+}
+
+</table>

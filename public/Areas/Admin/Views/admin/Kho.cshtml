@@ -1,0 +1,72 @@
+﻿@model IEnumerable<LuanVan.Models.Kho>
+
+@{
+    ViewBag.Title = "Kho";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Kho</h2>
+
+<p>
+    @Html.ActionLink("Nhập Nguyên Liệu", "formNhapKho")
+    <br />
+    @Html.ActionLink("Nhập Nước Uống", "formNhapnuocuong")
+    <br />
+    @Html.ActionLink("Cập Nhật", "actCapNhatKho")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Tên Nguyên Liệu</label>
+        </th>
+        <th>
+            <label>Tên Nước Uống</label>
+        </th>
+        <th>
+           <label>ngày nhập</label> 
+        </th>
+        <th>
+          <label> ngày hết hạn</label>
+        </th>
+        <th>
+            <label>Số Lượng</label>
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguyenLieu.nguyenlieu_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NuocUong.nuocuong_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kho_ngaynhap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kho_ngayhethan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kho_tongsoluong)
+        </td>
+       
+        @*<td>
+            @Html.DisplayFor(modelItem => item.phieunhap_id)
+        </td>*@
+        <td>    
+            @if (item.nguyenlieu_id == null)
+            {
+                @Html.ActionLink("Chi Tiết", "actChiTietPhieuNhapNuocUong", new { id = item.nuocuong_id })
+            }
+            @if (item.nuocuong_id == null) { 
+                
+                 @Html.ActionLink("Chi Tiết", "actChiTietPhieuNhap", new {  id=item.nguyenlieu_id  }) 
+            }
+        </td>
+    </tr>
+}
+
+</table>

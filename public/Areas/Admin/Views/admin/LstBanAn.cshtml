@@ -1,0 +1,62 @@
+﻿@model LuanVan.Models.BanAn
+
+@{
+    ViewBag.Title = "LstBanAn";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+<script src="~/Areas/Admin/Content/vendor/jquery-3.2.1.min.js"></script>
+
+<div class="text-left heading-section ftco-animate fadeInUp ftco-animated">
+    <h3>Khu Vực</h3>
+</div>
+<div class="row"> 
+    <div class="icon col-md-8">
+        <span class="ion-ios-arrow-down"></span>
+        @Html.DropDownListFor(model => model.phongan_id, ViewBag.dsPha as SelectList, new { @class = "form-control", @form = "reserForm" })
+    </div> 
+    <div class="col-md-4">
+        <div class="border border-dark p-5" style="background-color:#ffffff">
+            <div>
+                <p style="font-weight:bold; font-size:24px ">Chú ý:</p>
+                <p>- <span style="font-weight:bold; color:#000000">Bàn có màu đen</span> : Bàn chưa có khách ngồi.</p>
+                <p>- <span style="font-weight:bold; color:#ff0000">Bàn có màu đỏ</span> : Bàn đã có khách ngồi.</p>
+                <p>- <span style="font-weight:bold; color:#4cff00">Khi thanh toán ở đây</span> : Có thể chọn 1 lúc nhiều bàn và thanh toán. Sau khi thanh toán sẽ xuất ra hóa đơn của các bàn đã chọn.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-left heading-section ftco-animate fadeInUp ftco-animated">
+    <h3>Bàn Ăn</h3>
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="border border-dark p-5" style="background-color:#ffffff">
+                <div class="justify-content-center">
+                    <div id="divShowBanAn" name="divShowBanAn">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.get('/Admin/Admin/showBanAn/1', function (data) { //data là kết quả server trả về
+                $('#divShowBanAn').html(data); //chuyển data đc gửi về thành tài liệu html và hiển thị lên view
+            })
+
+            //divShowMoTa
+            $('#phongan_id').change(function () {
+                var phongan_id = $('#phongan_id').val();
+                //alert(malop);
+                var url = '/Admin/Admin/showBanAn/' + phongan_id;
+                $.get(url, function (data) { //data là kết quả server trả về
+                    $('#divShowBanAn').html(data); //chuyển data đc gửi về thành tài liệu html và hiển thị lên view
+                })
+            });
+        });
+    </script>
+

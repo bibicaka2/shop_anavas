@@ -1,0 +1,67 @@
+﻿@model LuanVan.Models.PhieuNhap
+
+@{
+    ViewBag.Title = "formNhapnuocuong";
+    Layout = "~/Areas/Admin/Views/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Trang Nhập Nước Uống</h2>
+
+@using (Html.BeginForm("actNhapNuocUong", "admin", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Thông Tin Nhập Nước Uống</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="select-wrap one-forth">
+            <label>Nước Uống</label>
+            <div class="icon"><span class=" ion-ios-arrow-down"></span></div>
+            @Html.DropDownListFor(Model => Model.nuocuong_id, ViewBag.dsNuocUong as SelectList, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Ngày Nhập")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phieunhap_ngaynhap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phieunhap_ngaynhap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Ngày Hết Hạn")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phieunhap_ngayhethan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phieunhap_ngayhethan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số Lượng")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phieunhap_soluong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phieunhap_soluong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Giá Trị")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phieunhap_gia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phieunhap_gia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay Lại", "kho")
+</div>

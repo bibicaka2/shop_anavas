@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LuanVan.Models.DatBan>
+
+@{
+    int count1 = 0;
+    int countSum1 = 4;
+    int count2 = 0;
+    int countSum2 = 4;
+    int count3 = 0;
+    int countSum3 = 4;
+    int count4 = 0;
+    int countSum4 = 4;
+}
+<h3>Tìm đơn đang được đặt theo SDT khách</h3>
+<div>
+    @{
+        foreach (var ba in Model)
+        {
+            if (ba.phongan_id == 1)
+            {
+                
+                count1++;
+            }
+            else if (ba.phongan_id == 2)
+            {
+                count2++;
+            }
+            else if (ba.phongan_id == 3)
+            {
+                count3++;
+            }
+            else if (ba.phongan_id == 4)
+            {
+                count4++;
+            }
+
+        }
+    }
+    <div> 
+        Phòng 1: @count1 / @countSum1
+    </div>
+    <div>
+        Phòng 2: @count2 / @countSum2
+    </div>
+    <div>
+        Phòng 3: @count3 / @countSum3
+    </div>
+    <div>
+        Phòng 4: @count4 / @countSum4 
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿
+@if ((string)ViewBag.tenfile == "")
+{
+    <div> khong co File hinh</div>
+}
+else
+{
+    <div>
+        <input type="image" src="@Url.Content(ViewBag.tenfile)" />
+       
+    </div>
+
+}

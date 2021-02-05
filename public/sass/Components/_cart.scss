@@ -1,0 +1,279 @@
+
+.main-cart-left{
+        padding-right: 40px;
+       
+}
+.row{
+    &__cart{
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+}
+.title-1 {
+    color: #000;
+    background-color: #f1f1f1;
+    font-family: GeometricExtraBold;
+    font-size: 23px;
+    margin: 20px 0px 20px 0px;
+    padding: 5px 20px 5px 20px;
+  
+}
+.item-2{
+    margin-left: -15px;
+}
+.media-left {
+    padding-right: 20px;
+    height: 180px;
+}
+.media-object {
+    width: 180px;
+    height: 180px;
+    background-color: #cccccc;
+    // border: #dddddd 1px solid;
+}
+.media-heading {
+    color: #000;
+    font-family: NunitoSanExtraBold;
+    font-size: 21px;
+    margin-bottom: 0px;
+    min-height: 50px;
+    font-weight: normal;
+}
+.media-body{
+    &__h5{
+        color: #000;
+        font-family: NunitoSanExtraBold;
+        font-size: 16px;
+    }
+    &--select{
+        width: 130px;
+        height: 32px;
+    }
+}
+.saleoff {
+    font-size: 16px;
+}
+.price {
+    color: #808080;
+    font-family: NunitoSanRegular;
+    margin-top: 10px;
+}
+.saleoff {
+    font-size: 16px;
+}
+.bottom {
+    position: absolute;
+    bottom: 0px;
+}
+.dropdown-toggle {
+    max-width: 120px;
+    border-radius: 0px;
+    background-color: #fff;
+    border: #a5a5a5 1px solid;
+    font-family: NunitoSanExtraBold;
+    font-size: 16px;
+}
+.item-divider {
+    background-color: #fff;
+    background: url('https://www.oasiscoolers.com/skin/frontend/default/iphone/images/bg_divider.png') repeat-x 7px;
+    height: 1px;
+    margin: 20px 0px;
+}
+.price{
+
+   
+    font-family: GeometricExtraBold;
+    font-size: 23px;
+    margin-bottom: 0px;
+    min-height: 50px;
+}
+.item-2-1{
+    margin-left: 10px;
+    padding-right: 0px;
+    text-align: right;
+    &__price{
+        color: #f15e2c;
+        font-family: GeometricExtraBold;
+        font-size: 23px;
+        margin-bottom: 0px;
+        min-height: 50px;
+    }
+  
+ 
+}
+.item-2{
+    &__price{
+        color: #808080;
+        font-family: NunitoSanRegular;
+        margin-top: 10px;
+    }
+}
+.status {
+    color: #f15e2c;
+    font-family: NunitoSanSBoldI;
+    font-size: 16px;
+}
+.main-cart {
+    max-width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 903px;
+}
+.item-divider-1{
+    
+    &:first-child{
+        border-bottom: #000 2px solid;
+    }
+    &:last-child{
+        border-bottom: #000 2px dashed;
+        height: 1px;
+        margin: 40px 0px;
+    }
+
+}
+.title-3 {
+    margin: 35px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+.btn-cont {
+    border-radius: 0px;
+    float: right;
+    height: 40px;
+    width: 240px;
+    /* padding-top: 9px; */
+    border: none;
+    background-color: #303030;
+    color: #fff;
+    font-family: GeometricExtraBold;
+    font-size: 18px;
+}
+.btn-delall{
+    border-radius: 0px;
+    height: 40px;
+    width: 240px;
+    /* padding-top: 9px; */
+    border: none;
+    background-color: #303030;
+    color: #fff;
+    font-family: GeometricExtraBold;
+    font-size: 18px;
+}
+
+//BILL
+.list-group {
+    background-color: #f1f1f1;
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+
+
+.list-group-item {
+    &__divider {
+    border-bottom: #000 2px solid !important;
+    margin: 0px 20px;
+    padding: 0px;
+    
+    }
+    &__btn-cart{
+        border-radius: 0px;
+        background-color: #f15e2c;
+        color: #fff;
+        font-family: GeometricExtraBold;
+        font-size: 23px;
+        height: 80px;
+        width: 100%;
+        /* padding-top: 23px; */
+        margin-top: 10px;
+    }
+    &__title{
+        color: #000;
+        font-family: GeometricExtraBold;
+        font-size: 23px;
+        float: left;
+        &-1{
+            color: #000;
+            font-family: GeometricExtraBold;
+            font-size: 18px;
+            margin: 20px 0px 0px 0px;
+            padding-bottom: 0px;
+            float: left;
+        }
+        &-2{
+            color: #f15e2c;
+            font-family: NunitoSanSBoldI;
+            font-size: 14px;
+            margin: 5px 0px 0px 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        &-3{
+            float: left;
+            color: #808080;
+            font-family: NunitoSanExtraBold;
+            font-size: 16px;
+            font-weight: 200px !important;
+            &-1{
+                float: right;
+            }
+        }
+        &-4{
+            &-1{
+                float: right;
+            }
+        }
+        &-5{
+            float: left;
+            color: #000;
+            font-family: GeometricExtraBold;
+            font-size: 18px;
+            margin-top: 5px;
+            &-1{
+                float: right;
+                color: #000;
+                font-family: GeometricExtraBold;
+                font-size: 23px;
+            }
+        }
+    }
+  
+    
+    &__form-control{
+        display: block;
+        width: 241px !important;
+        height: 40px !important;
+        /* padding: 6px 12px; */
+        line-height: 1.42857143;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 0px;
+        color: #000;
+        font-family: NunitoSanExtraBold;
+    }
+    &__btn-apply {
+        border-radius: 0px;
+        background-color: #f15e2c;
+        /* padding: 0px; */
+        color: #fff;
+        font-family: GeometricExtraBold;
+        font-size: 18px;
+        height: 40px;
+    }
+    &__divider-1 {
+      
+        border-bottom: #A9A9A9 2px dashed !important;
+        height: 2px;
+        margin: 5px 20px;
+    }
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    margin-bottom: -1px;
+    background-color: transparent;
+    border: none;
+    clear: both;
+    overflow: hidden;
+}
+.btn-cont{
+    float:left !important;
+}
